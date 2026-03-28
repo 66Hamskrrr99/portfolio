@@ -42,27 +42,21 @@
 
     <section id="ai-gallery">
         <h2>AI Graphic Resources</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="./assets/ai_character.jpg" alt="AI Character Design">
-                <div class="item-overlay">
-                    <h3>Stylized AI Character</h3>
-                    <p>High-fidelity character design for next-gen mobile games.</p>
-                </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-paintbrush"></i>
+                <h3>AI Art</h3>
+                <p>High-fidelity character & environment concept arts utilizing generative AI.</p>
             </div>
-            <div class="portfolio-item">
-                <img src="./assets/ai_ui_ux.jpg" alt="AI UI UX">
-                <div class="item-overlay">
-                    <h3>AI UI/UX Cases</h3>
-                    <p>Cozy cat-themed simulation game interface.</p>
-                </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>UI / UX</h3>
+                <p>Cozy and stylized game interface designs with rapid prototyping.</p>
             </div>
-            <div class="portfolio-item">
-                <img src="./assets/ai_3d_prop.jpg" alt="AI 3D Prop">
-                <div class="item-overlay">
-                    <h3>AI-Driven 3D Modeling</h3>
-                    <p>High-poly stylized wooden cat tower with glowing lanterns.</p>
-                </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-cube"></i>
+                <h3>3D Modeling & Etc.</h3>
+                <p>AI-driven high-poly modeling, props, and asset generation.</p>
             </div>
         </div>
     </section>
@@ -139,22 +133,26 @@
             </div>
         </div>
         <div class="project-details">
-            <h3>주요 참여 프로젝트</h3>
+            <h3>참여 프로젝트</h3>
             <div class="project-list">
-                <div class="project-card">
-                    <img src="https://play-lh.googleusercontent.com/WsxjQvfda1c7LIfoE8rYwNFK3sKVCIL1kdk0FWqg-7w7d_YBs2t-Kl-h6DkyT_fjKETB=s512" alt="고양이 섬의 비밀">
-                    <div class="project-info">
-                        <h4>고양이 섬의 비밀 (Secret of Cat Island)</h4>
-                        <p>프로젝트 초기 빌딩, 배경 및 캐릭터 모델링 참여, 라이브 서비스 대응</p>
+                <a href="https://play.google.com/store/apps/details?id=com.likeitgames.AfterRain2&hl=ko" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-card" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <img src="https://play-lh.googleusercontent.com/WsxjQvfda1c7LIfoE8rYwNFK3sKVCIL1kdk0FWqg-7w7d_YBs2t-Kl-h6DkyT_fjKETB=s512" alt="고양이 섬의 비밀">
+                        <div class="project-info">
+                            <h4>고양이 섬의 비밀 (Secret of Cat Island)</h4>
+                            <p>프로젝트 초기 빌딩, 배경 및 캐릭터 모델링 참여, 라이브 서비스 대응</p>
+                        </div>
                     </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://play-lh.googleusercontent.com/baqVVZ7_kdDSBKPcEOBiY_gYuUvWbilPBvszqtuOh6w6mc2qAL6bSZvdlB2j0ZvCkt8=s512" alt="당신에게 고양이가">
-                    <div class="project-info">
-                        <h4>당신에게 고양이가 (Dear My Cat)</h4>
-                        <p>배경 및 캐릭터 모델링 참여, 라이브 서비스 대응</p>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.flerogames.AfterRain&hl=ko" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-card" style="cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <img src="https://play-lh.googleusercontent.com/baqVVZ7_kdDSBKPcEOBiY_gYuUvWbilPBvszqtuOh6w6mc2qAL6bSZvdlB2j0ZvCkt8=s512" alt="당신에게 고양이가">
+                        <div class="project-info">
+                            <h4>당신에게 고양이가 (Dear My Cat)</h4>
+                            <p>배경 및 캐릭터 모델링 참여, 라이브 서비스 대응</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="portfolio-slider-container">
@@ -208,13 +206,15 @@
         </div>
     </section>
 
-    <section id="tools">
-        <h2>Expertise & Tools</h2>
-        <div class="tools-grid">
-            <div class="tool-card"><i class="fa-brands fa-unity"></i> Unity Engine</div>
-            <div class="tool-card"><i class="fa-solid fa-cube"></i> 3Ds Max</div>
-            <div class="tool-card"><i class="fa-solid fa-shapes"></i> Blender</div>
-            <div class="tool-card"><i class="fa-solid fa-gamepad"></i> Unreal Engine</div>
+    <section id="tools" style="padding-top: 40px; padding-bottom: 60px;">
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">Expertise & Tools</h2>
+        <div class="tools-inline">
+            <div class="tool-badge"><i class="fa-brands fa-unity"></i> Unity</div>
+            <div class="tool-badge"><i class="fa-solid fa-pen-nib"></i> Clip Studio</div>
+            <div class="tool-badge"><i class="fa-solid fa-palette"></i> Photoshop</div>
+            <div class="tool-badge"><i class="fa-solid fa-cube"></i> 3ds Max</div>
+            <div class="tool-badge"><i class="fa-solid fa-gem"></i> ZBrush</div>
+            <div class="tool-badge"><i class="fa-solid fa-shapes"></i> Blender</div>
         </div>
     </section>
 
