@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Support Portfolio | AI & 3D Specialist</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- iro.js Color Wheel -->
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <!-- Three.js Library -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="main.js?v=10"></script>
+</head>
+<body data-theme="minimalist">
+    <nav>
+        <div class="logo">ANTIGRAVITY PORTFOLIO</div>
+        <div class="nav-links">
+            <button class="theme-toggle" id="theme-toggle">SWITCH TO CYBERPUNK</button>
+        </div>
+    </nav>
+
+    <header class="hero" id="home" style="background: linear-gradient(135deg, #050505 0%, #151515 100%); position: relative; overflow: hidden;">
+        <div class="hero-content">
+            <h1>Gaming Business:<br><span class="accent-text">AI Graphics Design Portfolio</span></h1>
+            <p>AI 기반 2D·3D 그래픽 리소스 제작 지원을 위한 게임 사업 포트폴리오</p>
+            <div class="hero-btns">
+              <a href="#ai-gallery" class="btn primary">View Gallery</a>
+              <a href="#three-viewer" class="btn outline">3D Artifacts</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="ai-gallery">
+        <h2>AI Graphic Resources</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="./assets/ai_character.jpg" alt="AI Character Design">
+                <div class="item-overlay">
+                    <h3>Stylized AI Character</h3>
+                    <p>High-fidelity character design for next-gen mobile games.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="./assets/ai_ui_ux.jpg" alt="AI UI UX">
+                <div class="item-overlay">
+                    <h3>AI UI/UX Cases</h3>
+                    <p>Cozy cat-themed simulation game interface.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="./assets/ai_3d_prop.jpg" alt="AI 3D Prop">
+                <div class="item-overlay">
+                    <h3>AI-Driven 3D Modeling</h3>
+                    <p>High-poly stylized wooden cat tower with glowing lanterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="three-viewer">
+        <h2>Interactive 3D Modeling</h2>
+        <div id="viewer-container">
+            <!-- Top Left Overlay -->
+            <div class="viewer-top-left">
+              <span id="load-status">Ready to load 3D...</span>
+              <button class="btn pill" id="reset-view">RESET VIEW</button>
+              <button class="btn pill active" id="toggle-grid">TOGGLE GRID</button>
+              <button class="btn pill" id="toggle-ortho">ORTHOGRAPHIC</button>
+            </div>
+            
+            <!-- Far Right Toolbar -->
+            <div class="viewer-toolbar">
+                <button class="tool-btn" id="toggle-wireframe" title="Wireframe"><i class="fa-solid fa-border-all"></i></button>
+                <button class="tool-btn" id="toggle-toon" title="Toggle 2D Style"><i class="fa-solid fa-mask"></i></button>
+                <button class="tool-btn" id="toggle-lights" title="Toggle Lights"><i class="fa-regular fa-lightbulb"></i></button>
+                <button class="tool-btn" id="toggle-light-panel" title="Settings"><i class="fa-solid fa-sliders"></i></button>
+                <button class="tool-btn" id="toggle-bloom" title="Toggle Bloom"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+            </div>
+
+            <!-- Light Controls Popup (Toggled via toolbar) -->
+            <div class="light-controls-panel" id="light-controls-panel" style="display: none;">
+                <div style="position: relative; display:flex; flex-direction: column; gap: 15px; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+                    <div style="display:flex; justify-content:center; gap: 15px;">
+                        <div style="display:flex; flex-direction:column; align-items:center;">
+                            <span style="font-size:0.7rem; color:#aaa; margin-bottom:8px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Light</span>
+                            <div id="color-wheel-container"></div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; align-items:center;">
+                            <span style="font-size:0.7rem; color:#aaa; margin-bottom:8px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Shadow</span>
+                            <div id="shadow-color-wheel-container"></div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:8px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <label style="display:flex; justify-content:space-between; font-size:0.8rem; color:#ccc;">Angle <input type="range" id="light-angle-h" min="0" max="360" value="0" style="width: 100px; accent-color: var(--primary);"></label>
+                        <label style="display:flex; justify-content:space-between; font-size:0.8rem; color:#ccc;">Height <input type="range" id="light-angle-v" min="-89" max="89" value="30" style="width: 100px; accent-color: var(--primary);"></label>
+                        <label style="display:flex; justify-content:space-between; font-size:0.8rem; color:#ccc; margin-top:5px;">Bloom <input type="range" id="bloom-intensity" min="0" max="3" step="0.05" value="0.3" style="width: 100px; accent-color: #ff00ff;"></label>
+                        <label style="display:flex; justify-content:space-between; font-size:0.8rem; color:#ccc;">Radius <input type="range" id="bloom-radius" min="0" max="2" step="0.05" value="0.8" style="width: 100px; accent-color: #ff00ff;"></label>
+                        <label style="display:flex; justify-content:space-between; font-size:0.8rem; color:#ccc;">Threshold <input type="range" id="bloom-threshold" min="0" max="1" step="0.05" value="0.5" style="width: 100px; accent-color: #ff00ff;"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="progress-container" class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <canvas id="canvas3d"></canvas>
+            <!-- Vertical Thumbnails -->
+            <div class="viewer-thumbnails vertical" id="viewer-thumbnails">
+                <!-- Thumbnails injected via JS -->
+            </div>
+        </div>
+        <p class="description">배경 소품 및 캐릭터 모델링. 사이트에서 3D 모델을 회전하고 실사/만화 스타일을 전환하며 미리 볼 수 있는 기능을 지원합니다.</p>
+    </section>
+
+    <section id="game-showcase">
+        <h2>Playable Game Showcase</h2>
+        <div class="comparison-container">
+            <div class="comparison-side">
+                <span class="badge">Original Version</span>
+                <div class="game-container">
+                    <iframe src="./까까런(수정 전)/index.html"></iframe>
+                </div>
+            </div>
+            <div class="comparison-side">
+                <span class="badge ai">AI Enhanced (Reskinned)</span>
+                <div class="game-container">
+                    <iframe src="./까까런/index.html"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="project-details">
+            <h3>주요 참여 프로젝트</h3>
+            <div class="project-list">
+                <div class="project-card">
+                    <img src="https://play-lh.googleusercontent.com/WsxjQvfda1c7LIfoE8rYwNFK3sKVCIL1kdk0FWqg-7w7d_YBs2t-Kl-h6DkyT_fjKETB=s512" alt="고양이 섬의 비밀">
+                    <div class="project-info">
+                        <h4>고양이 섬의 비밀 (Secret of Cat Island)</h4>
+                        <p>프로젝트 초기 빌딩, 배경 및 캐릭터 모델링 참여, 라이브 서비스 대응</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://play-lh.googleusercontent.com/baqVVZ7_kdDSBKPcEOBiY_gYuUvWbilPBvszqtuOh6w6mc2qAL6bSZvdlB2j0ZvCkt8=s512" alt="당신에게 고양이가">
+                    <div class="project-info">
+                        <h4>당신에게 고양이가 (Dear My Cat)</h4>
+                        <p>배경 및 캐릭터 모델링 참여, 라이브 서비스 대응</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-slider-container">
+                <h3 class="slider-title">Concept & Asset Gallery</h3>
+                <div class="slider-viewport" id="portfolio-slider">
+                    <div class="slider-track" id="slider-track">
+                        <div class="slider-slide active" data-index="0">
+                            <img src="./assets/portfolio_images/portfolio_img_01.png" alt="Concept Art 01" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="1">
+                            <img src="./assets/portfolio_images/portfolio_img_02.png" alt="Concept Art 02" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="2">
+                            <img src="./assets/portfolio_images/portfolio_img_03.png" alt="Concept Art 03" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="3">
+                            <img src="./assets/portfolio_images/portfolio_img_04.png" alt="Concept Art 04" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="4">
+                            <img src="./assets/portfolio_images/portfolio_img_05.png" alt="Concept Art 05" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="5">
+                            <img src="./assets/portfolio_images/portfolio_img_06.png" alt="Concept Art 06" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="6">
+                            <img src="./assets/portfolio_images/portfolio_img_07.png" alt="Concept Art 07" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="7">
+                            <img src="./assets/portfolio_images/portfolio_img_08.png" alt="Concept Art 08" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="8">
+                            <img src="./assets/portfolio_images/portfolio_img_09.png" alt="Concept Art 09" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="9">
+                            <img src="./assets/portfolio_images/portfolio_img_10.png" alt="Concept Art 10" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="10">
+                            <img src="./assets/portfolio_images/portfolio_img_11.png" alt="Concept Art 11" class="clickable-img">
+                        </div>
+                        <div class="slider-slide" data-index="11">
+                            <img src="./assets/portfolio_images/portfolio_img_12.png" alt="Concept Art 12" class="clickable-img">
+                        </div>
+                    </div>
+                    
+                    <button class="slider-btn prev" id="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="slider-btn next" id="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
+                    
+                    <div class="slider-pagination" id="slider-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools">
+        <h2>Expertise & Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card"><i class="fa-brands fa-unity"></i> Unity Engine</div>
+            <div class="tool-card"><i class="fa-solid fa-cube"></i> 3Ds Max</div>
+            <div class="tool-card"><i class="fa-solid fa-shapes"></i> Blender</div>
+            <div class="tool-card"><i class="fa-solid fa-gamepad"></i> Unreal Engine</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Game Business Support Portfolio. Built with Antigravity.</p>
+    </footer>
+
+    <!-- Image Zoom Modal -->
+    <div id="image-modal" class="image-modal">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="modal-caption"></div>
+    </div>
+
+    <script>
+      // Prevent parent page from scrolling when using game controls inside iframes
+      window.addEventListener('keydown', function(e) {
+        if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
+          if (document.activeElement.tagName === 'IFRAME') {
+            e.preventDefault();
+          }
+        }
+      }, { passive: false });
+
+      // Handle the "bottom button" scroll issue (often focus-based)
+      window.addEventListener('click', function(e) {
+        // If the target is a game-related button or inside the game area
+        if (e.target.closest('.game-container') || e.target.closest('.premium-btn')) {
+          // Prevent the browser from trying to scroll-into-view when focusing the iframe
+          // This keeps the page steady when clicking "PLAY"
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+:root {
+    --primary: #33ccff; /* Icy Blue */
+    --secondary: #ff77bb; /* Pastel Pink */
+    --accent: #ffdd44; /* Star Yellow */
+    --bg-dark: #051025; /* Deep Arctic Night */
+    --text-light: #ffffff;
+    --shadow: 0 4px 25px rgba(51, 204, 255, 0.4);
+    --glass: rgba(255, 255, 255, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-dark);
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 20px rgba(255, 51, 153, 0.2);
+    overflow: hidden;
+    background: #000;
+    border: 2px solid var(--glass);
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* UI Overlay */
+#ui-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    content: space-between;
+    align-items: flex-start;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.stat-item.glass {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item .label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 2px;
+}
+
+.stat-item .value {
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--secondary);
+    text-shadow: 0 0 15px var(--secondary);
+    opacity: 0.8;
+}
+
+/* Screen Overlays */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+.screen-content.glass {
+    background: url('resources/ui_bg.jpg') no-repeat center center;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    padding: 20px 60px;
+    border-radius: 40px;
+    border: 3px solid rgba(255,255,255,0.4);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,255,255,0.2);
+    max-height: 95%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Starry background effect (Disabled as we use ui_bg now) */
+.screen-content.glass::after {
+    display: none;
+}
+
+.title-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px; /* Reduced to save space */
+    z-index: 1;
+    width: 100%; /* Take full width to prevent clipping children */
+    overflow: visible;
+}
+
+.floating-icon {
+    font-size: 40px;
+    position: absolute;
+    filter: drop-shadow(0 0 10px var(--accent));
+    animation: float 3s ease-in-out infinite;
+    z-index: -1; /* Move behind the title if requested */
+    pointer-events: none;
+}
+
+.icon-star-1 {
+    right: 20px;
+    top: 50px; 
+    font-size: 42px;
+    animation-delay: 0.8s;
+}
+
+.icon-star-2 {
+    left: 20px;
+    top: 80px;
+    font-size: 32px;
+    animation-delay: 1.6s;
+}
+
+.icon-star-3 {
+    right: 60px;
+    top: 150px;
+    font-size: 30px;
+    animation-delay: 2.4s;
+}
+
+.icon-star-4 {
+    left: -60px;
+    bottom: -40px;
+    font-size: 28px;
+    animation-delay: 0.4s;
+    z-index: 1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+.ui-logo {
+    width: 320px;
+    height: 140px;
+    background: transparent url('resources/LOGO.png') no-repeat center center;
+    background-size: contain;
+    z-index: 2;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+    animation: floatLogo 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.ui-moon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: transparent url('resources/moon.png') no-repeat center center;
+    background-size: contain;
+    top: -20px;
+    left: 20px;
+    z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(180, 150, 255, 0.6));
+    animation: pulseMoon 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseMoon {
+    0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(180, 150, 255, 0.6)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 35px rgba(180, 150, 255, 0.9)); }
+}
+
+.title {
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--primary);
+    text-shadow: 0 0 25px var(--primary);
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+}
+
+.result-box {
+    margin-bottom: 15px; /* Reduced from 30px */
+    position: relative;
+    z-index: 5;
+}
+
+.result-box p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 2px;
+}
+
+.final-value {
+    font-size: 40px; /* Reduced from 48px */
+    font-weight: 900;
+    color: white;
+}
+
+.ui-play-btn {
+    width: 240px;
+    height: 90px;
+    background: transparent url('resources/play.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.ui-play-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1) drop-shadow(0 0 10px white);
+}
+
+.controls-hint {
+    margin-top: 10px; /* Reduced to save space */
+    font-size: 13px;
+    color: #444; /* Changed from white to a readable dark-grey for contrast */
+    font-weight: 500;
+    opacity: 0.8;
+    line-height: 1.4;
+    z-index: 5;
+    position: relative;
+}
+
+/* Puffy Clouds at the bottom corners */
+.cloud {
+    position: absolute;
+    bottom: 0px; /* Moved up to be visible inside overflow:hidden */
+    background: rgba(255, 255, 255, 0.7); /* Increased opacity */
+    box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.8),
+        -20px -5px 30px rgba(255, 255, 255, 0.6),
+        20px -5px 30px rgba(255, 255, 255, 0.6);
+    border-radius: 50% 50% 20% 20%;
+    filter: blur(5px);
+    z-index: 2; /* Ensure it's above the background but below the text if needed */
+    pointer-events: none;
+}
+
+.cloud-1 {
+    left: -30px;
+    width: 180px;
+    height: 70px;
+    transform: rotate(3deg);
+}
+
+.cloud-2 {
+    right: -50px;
+    width: 220px;
+    height: 90px;
+    transform: rotate(-2deg);
+}

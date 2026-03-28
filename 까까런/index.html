@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>까까런 - Premium Ant Dash</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Premium UI Overlay -->
+        <div id="ui-overlay">
+            <div class="stat-item glass">
+                <span class="label">JELLY</span>
+                <span id="score" class="value">0</span>
+            </div>
+            <div class="logo-text">ANT DASH</div>
+        </div>
+
+        <!-- Main Game Canvas -->
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+        <!-- Game Screens -->
+        <div id="game-over" class="overlay">
+            <div class="screen-content glass">
+                <div class="title-container">
+                    <div class="floating-icon icon-star-1">⭐</div>
+                    <div class="ui-moon"></div>
+                    <div class="ui-logo"></div> <!-- Updated stylized logo -->
+                    <div class="floating-icon icon-star-2">⭐</div>
+                    <div class="floating-icon icon-star-3">⭐</div>
+                </div>
+                <div class="result-box">
+                    <p>Total Jellies Collected</p>
+                    <span id="final-score" class="final-value">0</span>
+                </div>
+                <button id="start-btn" class="ui-play-btn"></button>
+                <div class="controls-hint">
+                    <p>[SPACE] or [TAP] to Jump</p>
+                    <p>Double Jump Available!</p>
+                </div>
+                <!-- Puffy Clouds at the bottom -->
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
